@@ -1,0 +1,15 @@
+{
+  "name": "conceitos-nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rodolfo Correia do Nascimento",
+  "license": "ISC",
+  "description": "API feita em conjunto com o DevClub para desenvolver o aprendizado.",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
