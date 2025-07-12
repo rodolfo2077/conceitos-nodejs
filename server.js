@@ -3,9 +3,14 @@ import { PrismaClient } from "./generated/prisma/index.js";
 
 const app = express();
 const prisma = new PrismaClient();
+
+const port = 3000;
 app.use(express.json());
 
-app.listen(3000);
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+  console.log(`Acesse pelo http://localhost:${port}`);
+});
 
 // Criar rota POST para criar usuario no banco de dados mongo via framework prisma
 app.post("/users", async (req, res) => {
@@ -43,12 +48,12 @@ app.put("/users/:id", async (req, res) => {
 
 // Criar rota DELETE
 app.delete("/users/:id", async (req, res) => {
-  const users = await prisma.user.delete({
+  await prisma.user.delete({
     where: {
       id: req.params.id,
     },
   });
-  res.status(200).json(users);
+  res.status(200).json({ message: "Usuário deletado com sucesso!" });
 });
 
 // CRUD Finalizado
