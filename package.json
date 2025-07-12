@@ -2,14 +2,22 @@
   "name": "conceitos-nodejs",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch server.js",
+    "prisma": "npx prisma studio"
   },
   "keywords": [],
   "author": "Rodolfo Correia do Nascimento",
   "license": "ISC",
   "description": "API feita em conjunto com o DevClub para desenvolver o aprendizado.",
   "dependencies": {
-    "express": "^5.1.0"
+    "@prisma/client": "^6.11.1",
+    "express": "^5.1.0",
+    "mongodb": "^6.17.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.11.1"
   }
 }
