@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscar Usuário</title>
+  </head>
+  <body>
+    <input type="text" id="inputId" placeholder="Digite o ID do usuário" />
+    <button id="btn">Buscar</button>
+
+    <p><strong>Nome:</strong> <span id="name">--</span></p>
+    <p><strong>Idade:</strong> <span id="age">--</span></p>
+
+    <script>
+      const btn = document.querySelector("#btn");
+
+      btn.addEventListener("click", async () => {
+        const id = document.querySelector("#inputId").value;
+
+        if (!id) {
+          alert("Digite um ID!");
+          return;
+        }
+
+        try {
+          const response = await fetch(`http://localhost:3000/users/${id}`);
+          const user = await response.json();
+
+          if (user.error || user.message) {
+            alert("Usuário não encontrado.");
+            return;
+          }
+
+          document.querySelector("#name").textContent = user.name;
+          document.querySelector("#age").textContent = user.age;
+        } catch (err) {
+          console.error("Erro na requisição:", err);
+          alert("Erro ao buscar usuário.");
+        }
+      });
+    </script>
+  </body>
+</html>
