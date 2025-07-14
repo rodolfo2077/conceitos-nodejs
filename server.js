@@ -33,7 +33,7 @@ app.get("/users/:id", async (req, res) => {
 
 // Criar rota POST para criar usuario no banco de dados mongo via framework prisma
 app.post("/users", async (req, res) => {
-  
+  try {
     const user = await prisma.user.create({
       data: {
         email: req.body.email,
@@ -42,8 +42,10 @@ app.post("/users", async (req, res) => {
       },
     });
 
-    res.status(201).json(user);
-  
+    res.status(201).json(`Usuário criado com succeso: ${user}`);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Cria rota GET para listar todos usuarios da tabela user do mongodb
